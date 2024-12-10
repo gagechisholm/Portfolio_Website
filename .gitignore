@@ -35,3 +35,23 @@ Thumbs.db
 # Test Coverage
 coverage/
 *.cover
+
+# Virtual environments
+.venv/
+
+# Python compiled files
+*.pyc
+__pycache__/
+
+# SQLite database
+db.sqlite3
+
+# System-specific files
+*.exe
+*.bat
+*.cfg
+*.ps1
+*.zi
+
+# Django migrations
+*/migrations/

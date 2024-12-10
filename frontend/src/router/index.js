@@ -4,6 +4,7 @@ import HomeView from '@/components/HomeView.vue';
 import SkillSet from '@/components/SkillSet.vue';
 import ProjectList from '@/components/ProjectList.vue';
 import AboutMe from '@/components/AboutMe.vue';
+import ContactMe from '@/components/ContactMe.vue';
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: '/about',
     name: 'AboutMe',
     component: AboutMe,
+  },
+  {
+    path: '/contact',
+    name: 'ContactMe',
+    component: ContactMe,
   }
   // Add other routes here...
 ];

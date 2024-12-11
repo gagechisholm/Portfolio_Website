@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response 
 from rest_framework import status
+from .models import ContactMessage
+from .serializers import ContactMessageSerializer
 
 # Create your views here.
 # portfolio/views.py
@@ -23,16 +25,25 @@ class BlogViewSet(ModelViewSet):
 
 class FreeLanceInquiryView(APIView):
     def post(self, request):
-        name = request.data.get('name')
-        email = request.data.get('email')
-        message = request.data.get('message')
-
-        return Response({"message": "Freelance Inquiry Received"}, status=status.HTTP_100_OK)
+        serializer = ContactMessageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Freelance Inquiry Received"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class InfoRequestView(APIView):
     def post(self, request):
-        name = request.data.get('name')
-        email = request.data.get('email')
-        message = request.data.get('message')
+        serializer = ContactMessageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Message Request Received"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response({"message": "Message Request Received"}, status=status.HTTP_100_OK)
+
+class ContactMessageView(APIView):
+    def post(self, request):
+        serializer = ContactMessageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Your message has been submitted successfully!"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

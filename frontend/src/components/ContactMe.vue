@@ -56,26 +56,28 @@
 import axios from "axios";
 export default {
   methods: {
-    async handleFreelanceSubmit() {
-      try {
-        const response = await axios.post('/api/freelance-inquiry/', this.freelance);
-        alert(response.data.message);
-        this.freelance = { name: "", email: "", message: "" };
-      } catch (error) {
-        alert("Error submitting freelance inquiry. Please try again later.");
-      }
-    },
-    async handleInfoRequestSubmit() {
-      try {
-        const response = await axios.post('/api/info-request/', this.infoRequest);
-        alert(response.data.message);
-        this.infoRequest = { name: "", email: "", message: "" };
-      } catch (error) {
-        alert("Error submitting information request. Please try again later.");
-      }
-    },
+  async handleFreelanceSubmit() {
+    try {
+      const response = await axios.post('/api/freelance-inquiry/', this.freelance);
+      alert(response.data.message);
+      this.freelance = { name: "", email: "", message: "" };
+    } catch (error) {
+      console.error(error);
+      alert("Error submitting freelance inquiry. Please try again later.");
+    }
   },
-};
+  async handleInfoRequestSubmit() {
+    try {
+      const response = await axios.post('/api/info-request/', this.infoRequest);
+      alert(response.data.message);
+      this.infoRequest = { name: "", email: "", message: "" };
+    } catch (error) {
+      console.error(error);
+      alert("Error submitting information request. Please try again later.");
+    }
+  },
+},
+
 </script>
 
 <style scoped>
